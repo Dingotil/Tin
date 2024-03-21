@@ -1,94 +1,211 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>Mi Página</title>
   <link rel="stylesheet" type="text/css" href="style.css">
   <style>
-    /* Estilos CSS para la página */
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+    /* Estilos CSS del reproductor y la barra de progreso */
+    /* ... */
+
+    /* Estilos CSS adicionales */
+    /* ... */
+
+    .video-player {
+      position: relative;
+      width: 100%;
+      height: auto;
     }
 
-    .header {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
+    video {
+      width: 100%;
+      height: auto;
     }
 
-    .menu-icon {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      font-size: 24px;
-      color: #333;
-      cursor: pointer;
-      z-index: 999;
-    }
-
-    .menu {
-      position: fixed;
-      top: 0;
+    .controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
       right: 0;
-      width: 200px;
-      background-color: #f1f1f1;
-      padding: 20px;
-      transform: translateX(200px);
-      transition: transform 0.3s ease-in-out;
-      z-index: 998;
+      background-color: rgba(0, 0, 0, 0.75);
+      padding: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .menu.open {
-      transform: translateX(0);
+    .controls .icon {
+      color: #fff;
+      cursor: pointer;
     }
 
-    .menu ul {
+    .settings-menu {
+      position: absolute;
+      top: 50px;
+      right: 10px;
+      background-color: #fff;
+      padding: 10px;
+      display: none;
+      z-index: 1;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .settings-menu ul {
       list-style-type: none;
       padding: 0;
       margin: 0;
     }
 
-    .menu ul li {
-      margin-bottom: 10px;
+    .settings-menu ul li {
+      cursor: pointer;
+      padding: 5px;
+      font-size: 14px;
+      line-height: 1.3;
+      display: flex;
+      align-items: center;
     }
 
-    .content {
-      padding: 20px;
+    .settings-menu ul li:hover {
+      background-color: #f1f1f1;
+    }
+
+    .settings-menu .icon {
+      margin-right: 5px;
     }
   </style>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <header class="header">
-    <h1>Mi Página</h1>
-    <p>Una descripción de la página</p>
-  </header>
-
-  <div class="menu-icon" onclick="toggleMenu()">
-    <i class="material-icons">menu</i>
-  </div>
-
-  <div class="menu" id="menu">
-    <ul>
-      <li><a href="#">Inicio</a></li>
-      <li><a href="#">Acerca de</a></li>
-      <li><a href="#">Servicios</a></li>
-      <li><a href="#">Contacto</a></li>
-    </ul>
-  </div>
-
-  <div class="content">
-    <!-- Contenido de la página -->
-    <!-- ... -->
+  <div class="video-player">
+    <video id="video-player" controls src="https://cdnst14.tokyvideo.com/videos/245/245437/mp4/57481dda0cccdede47f6cce88bafe0a09e67edbcbb8ec5c54920351c238921e9.mp4?secure=DoWyROTG8HDrP1qwu1TmxA%3D%3D%2C1710781846"></video>
+    <div class="controls">
+      <i class="material-icons play-pause-btn icon">play_arrow</i>
+      <input type="range" class="progress-bar">
+      <i class="material-icons volume-btn icon">volume_up</i>
+      <i class="material-icons subtitle-btn icon">subtitles</i>
+      <i class="material-icons settings-btn icon">settings</i>
+      <div class="settings-menu">
+        <ul>
+          <li class="quality-option"><i class="material-icons icon">settings</i> Calidad: <span class="quality-value">Automático</span></li>
+          <li class="subtitles-option"><i class="material-icons icon">subtitles</i> Subtítulos: <span class="subtitles-value">Desactivado</span></li>
+          <li class="audio-option"><i class="material-icons icon">audiotrack</i> Audio: <span class="audio-value">Audio no reconocido</span></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <script>
-    function toggleMenu() {
-      const menu = document.getElementById('menu');
-      menu.classList.toggle('open');
+    // Obtener elementos del reproductor y la barra de progreso
+    const videoPlayer = document.getElementById('video-player');
+    const controls = document.querySelector('.controls');
+    const iconElements = document.querySelectorAll('.icon');
+    const settingsBtn = document.querySelector('.settings-btn');
+    const settingsMenu = document.querySelector('.settings-menu');
+    const qualityOption = document.querySelector('.quality-option');
+    const qualityValue = document.querySelector('.quality-value');
+    const subtitlesOption = document.querySelector('.subtitles-option');
+    const subtitlesValue = document.querySelector('.subtitles-value');
+    const audioOption = document.querySelector('.audio-option');
+    const audioValue = document.querySelector('.audio-value');
+    let controlsTimeoutId;
+
+    // Función para reproducir o pausar el video
+    function togglePlayPause() {
+      if (videoPlayer.paused || videoPlayer.ended) {
+        videoPlayer.play();
+      } else {
+        videoPlayer.pause();
+      }
     }
+
+    // Evento de clic en el botón de reproducción/pausa
+    document.addEventListener('click', function(event) {
+      const targetElement = event.target;
+      if (targetElement.classList.contains('play-pause-btn') || targetElement.classList.contains('material-icons')) {
+        togglePlayPause();
+      }
+    });
+
+    // Evento de cambio en la barra de progreso
+    videoPlayer.addEventListener('timeupdate', function() {
+      const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
+      const progressBar = document.querySelector('.progress-bar');
+      progressBar.value = progress;
+    });
+
+    // Mostrar u ocultar los controles del reproductor
+    function toggleControls() {
+      if (controls.style.display === 'flex') {
+        controls.style.display = 'none';
+      } else {
+        controls.style.display = 'flex';
+        hideSettingsMenu();
+        clearTimeout(controlsTimeoutId);
+        controlsTimeoutId = setTimeout(function() {
+          controls.style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    // Eventos de ratón para mostrar/ocultar los controles
+    document.addEventListener('mousemove', function() {
+      toggleControls();
+    });
+
+    document.addEventListener('keydown', function(event) {
+      const key = event.key;
+      if (key === ' ') {
+        event.preventDefault();
+        togglePlayPause();
+        toggleControls();
+      }
+    });
+
+    // Mostrar u ocultar el menú de configuración
+    function toggleSettingsMenu() {
+      if (settingsMenu.style.display === 'block') {
+        hideSettingsMenu();
+      } else {
+        settingsMenu.style.display = 'block';
+      }
+    }
+
+    // Ocultar el menú de configuración
+    function hideSettingsMenu() {
+      settingsMenu.style.display = 'none';
+    }
+
+    // Evento de clic en el botón de configuración
+    settingsBtn.addEventListener('click', function() {
+      toggleSettingsMenu();
+    });
+
+    // Evento de clic fuera del menú de configuración para ocultarlo
+    document.addEventListener('click', function(event) {
+      const targetElement = event.target;
+      if (!targetElement.classList.contains('settings-btn') && !targetElement.closest('.settings-menu')) {
+        hideSettingsMenu();
+      }
+    });
+
+    // Evento de clic en la opción de calidad
+    qualityOption.addEventListener('click', function() {
+      // Lógica para cambiar la calidad del video
+      // ...
+      qualityValue.textContent = '1080p'; // Ejemplo: mostrar la nueva calidad seleccionada
+    });
+
+    // Evento de clic en la opción de subtítulos
+    subtitlesOption.addEventListener('click', function() {
+      // Lógica para activar/desactivar los subtítulos
+      // ...
+      subtitlesValue.textContent = 'Activado'; // Ejemplo: mostrar el estado de los subtítulos
+    });
+
+    // Evento de clic en la opción de audio
+    audioOption.addEventListener('click', function() {
+      // Lógica para cambiar el audio
+      // ...
+      audioValue.textContent = 'Español'; // Ejemplo: mostrar el nuevo idioma seleccionado
+    });
   </script>
 </body>
 </html>
