@@ -1,211 +1,34 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Mi página</title>
   <style>
-    /* Estilos CSS del reproductor y la barra de progreso */
-    /* ... */
-
-    /* Estilos CSS adicionales */
-    /* ... */
-
-    .video-player {
-      position: relative;
-      width: 100%;
-      height: auto;
+    body {
+      background: white;
+      color: black;
+      font-family: Arial, sans-serif;
+      padding: 20px;
     }
-
-    video {
-      width: 100%;
-      height: auto;
+    
+    h1 {
+      text-align: center;
     }
-
-    .controls {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-color: rgba(0, 0, 0, 0.75);
-      padding: 10px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .controls .icon {
-      color: #fff;
-      cursor: pointer;
-    }
-
-    .settings-menu {
-      position: absolute;
-      top: 50px;
-      right: 10px;
-      background-color: #fff;
-      padding: 10px;
-      display: none;
-      z-index: 1;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-
-    .settings-menu ul {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .settings-menu ul li {
-      cursor: pointer;
-      padding: 5px;
-      font-size: 14px;
-      line-height: 1.3;
-      display: flex;
-      align-items: center;
-    }
-
-    .settings-menu ul li:hover {
-      background-color: #f1f1f1;
-    }
-
-    .settings-menu .icon {
-      margin-right: 5px;
+    
+    p {
+      margin-bottom: 20px;
     }
   </style>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-  <div class="video-player">
-    <video id="video-player" controls src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8"></video>
-    <div class="controls">
-      <i class="material-icons play-pause-btn icon">play_arrow</i>
-      <input type="range" class="progress-bar">
-      <i class="material-icons volume-btn icon">volume_up</i>
-      <i class="material-icons subtitle-btn icon">subtitles</i>
-      <i class="material-icons settings-btn icon">settings</i>
-      <div class="settings-menu">
-        <ul>
-          <li class="quality-option"><i class="material-icons icon">settings</i> Calidad: <span class="quality-value">Automático</span></li>
-          <li class="subtitles-option"><i class="material-icons icon">subtitles</i> Subtítulos: <span class="subtitles-value">Desactivado</span></li>
-          <li class="audio-option"><i class="material-icons icon">audiotrack</i> Audio: <span class="audio-value">Audio no reconocido</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    // Obtener elementos del reproductor y la barra de progreso
-    const videoPlayer = document.getElementById('video-player');
-    const controls = document.querySelector('.controls');
-    const iconElements = document.querySelectorAll('.icon');
-    const settingsBtn = document.querySelector('.settings-btn');
-    const settingsMenu = document.querySelector('.settings-menu');
-    const qualityOption = document.querySelector('.quality-option');
-    const qualityValue = document.querySelector('.quality-value');
-    const subtitlesOption = document.querySelector('.subtitles-option');
-    const subtitlesValue = document.querySelector('.subtitles-value');
-    const audioOption = document.querySelector('.audio-option');
-    const audioValue = document.querySelector('.audio-value');
-    let controlsTimeoutId;
-
-    // Función para reproducir o pausar el video
-    function togglePlayPause() {
-      if (videoPlayer.paused || videoPlayer.ended) {
-        videoPlayer.play();
-      } else {
-        videoPlayer.pause();
-      }
-    }
-
-    // Evento de clic en el botón de reproducción/pausa
-    document.addEventListener('click', function(event) {
-      const targetElement = event.target;
-      if (targetElement.classList.contains('play-pause-btn') || targetElement.classList.contains('material-icons')) {
-        togglePlayPause();
-      }
-    });
-
-    // Evento de cambio en la barra de progreso
-    videoPlayer.addEventListener('timeupdate', function() {
-      const progress = (videoPlayer.currentTime / videoPlayer.duration) * 100;
-      const progressBar = document.querySelector('.progress-bar');
-      progressBar.value = progress;
-    });
-
-    // Mostrar u ocultar los controles del reproductor
-    function toggleControls() {
-      if (controls.style.display === 'flex') {
-        controls.style.display = 'none';
-      } else {
-        controls.style.display = 'flex';
-        hideSettingsMenu();
-        clearTimeout(controlsTimeoutId);
-        controlsTimeoutId = setTimeout(function() {
-          controls.style.display = 'none';
-        }, 3000);
-      }
-    }
-
-    // Eventos de ratón para mostrar/ocultar los controles
-    document.addEventListener('mousemove', function() {
-      toggleControls();
-    });
-
-    document.addEventListener('keydown', function(event) {
-      const key = event.key;
-      if (key === ' ') {
-        event.preventDefault();
-        togglePlayPause();
-        toggleControls();
-      }
-    });
-
-    // Mostrar u ocultar el menú de configuración
-    function toggleSettingsMenu() {
-      if (settingsMenu.style.display === 'block') {
-        hideSettingsMenu();
-      } else {
-        settingsMenu.style.display = 'block';
-      }
-    }
-
-    // Ocultar el menú de configuración
-    function hideSettingsMenu() {
-      settingsMenu.style.display = 'none';
-    }
-
-    // Evento de clic en el botón de configuración
-    settingsBtn.addEventListener('click', function() {
-      toggleSettingsMenu();
-    });
-
-    // Evento de clic fuera del menú de configuración para ocultarlo
-    document.addEventListener('click', function(event) {
-      const targetElement = event.target;
-      if (!targetElement.classList.contains('settings-btn') && !targetElement.closest('.settings-menu')) {
-        hideSettingsMenu();
-      }
-    });
-
-    // Evento de clic en la opción de calidad
-    qualityOption.addEventListener('click', function() {
-      // Lógica para cambiar la calidad del video
-      // ...
-      qualityValue.textContent = '1080p'; // Ejemplo: mostrar la nueva calidad seleccionada
-    });
-
-    // Evento de clic en la opción de subtítulos
-    subtitlesOption.addEventListener('click', function() {
-      // Lógica para activar/desactivar los subtítulos
-      // ...
-      subtitlesValue.textContent = 'Activado'; // Ejemplo: mostrar el estado de los subtítulos
-    });
-
-    // Evento de clic en la opción de audio
-    audioOption.addEventListener('click', function() {
-      // Lógica para cambiar el audio
-      // ...
-      audioValue.textContent = 'Español'; // Ejemplo: mostrar el nuevo idioma seleccionado
-    });
-  </script>
+  <h1>Mi página</h1>
+  
+  <p>
+    Este estándar que sirve de referencia del software que interactúa con la elaboración de páginas web en sus diferentes versiones. Define una estructura básica y un código (denominado código HTML) para la presentación de contenido de una página web, que incluye texto, imágenes, videos, juegos, entre otros elementos. Este estándar es gestionado.
+  </p>
+  
+  <p>
+    <a href="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8</a> y 
+    <a href="http://38.56.118.88:4000/play/a027/index.m3u8">http://38.56.118.88:4000/play/a027/index.m3u8</a>
+  </p>
 </body>
 </html>
