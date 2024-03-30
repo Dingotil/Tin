@@ -1,34 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Mi página</title>
   <style>
-    body {
-      background: white;
-      color: black;
-      font-family: Arial, sans-serif;
-      padding: 20px;
-    }
-    
-    h1 {
-      text-align: center;
-    }
-    
-    p {
-      margin-bottom: 20px;
+    .slideshow img {
+      display: none;
+      max-width: 100%;
+      height: auto;
     }
   </style>
 </head>
 <body>
-  <h1>Mi página</h1>
-  
-  <p>
-    Este estándar que sirve de referencia del software que interactúa con la elaboración de páginas web en sus diferentes versiones. Define una estructura básica y un código (denominado código HTML) para la presentación de contenido de una página web, que incluye texto, imágenes, videos, juegos, entre otros elementos. Este estándar es gestionado.
-  </p>
-  
-  <p>
-    <a href="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8">https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8</a> y 
-    <a href="http://38.56.118.88:4000/play/a027/index.m3u8">http://38.56.118.88:4000/play/a027/index.m3u8</a>
-  </p>
+  <div class="slideshow">
+    <img src="https://cdn.pixabay.com/photo/2023/08/20/08/30/luis-i-bridge-8201941_1280.jpg" alt="Imagen 1">
+    <img src="https://cdn.pixabay.com/photo/2023/08/05/14/24/twilight-8171206_1280.jpg" alt="Imagen 2">
+    <img src="https://cdn.pixabay.com/photo/2023/08/11/03/35/deer-8182756_1280.jpg" alt="Imagen 3">
+    <img src="https://cdn.pixabay.com/photo/2023/03/05/16/44/pier-7831868_1280.jpg" alt="Imagen 4">
+    <img src="https://cdn.pixabay.com/photo/2023/10/03/09/59/bridge-8291058_1280.jpg" alt="Imagen 5">
+  </div>
+
+  <script>
+    var slideIndex = 0;
+    carousel();
+
+    function carousel() {
+      var i;
+      var slides = document.getElementsByClassName("slideshow")[0].getElementsByTagName("img");
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      slideIndex++;
+      if (slideIndex > slides.length) {
+        slideIndex = 1;
+      }
+      slides[slideIndex - 1].style.display = "block";
+      setTimeout(carousel, 5000); // Cambia la imagen cada 5 segundos (5000 milisegundos)
+    }
+  </script>
 </body>
 </html>
