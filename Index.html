@@ -1,40 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <style>
-    .slideshow img {
-      display: none;
-      max-width: 100%;
-      height: auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Dispositivo</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="slideshow">
-    <img src="https://cdn.pixabay.com/photo/2023/08/20/08/30/luis-i-bridge-8201941_1280.jpg" alt="Imagen 1">
-    <img src="https://cdn.pixabay.com/photo/2023/08/05/14/24/twilight-8171206_1280.jpg" alt="Imagen 2">
-    <img src="https://cdn.pixabay.com/photo/2023/08/11/03/35/deer-8182756_1280.jpg" alt="Imagen 3">
-    <img src="https://cdn.pixabay.com/photo/2023/03/05/16/44/pier-7831868_1280.jpg" alt="Imagen 4">
-    <img src="https://cdn.pixabay.com/photo/2023/10/03/09/59/bridge-8291058_1280.jpg" alt="Imagen 5">
-  </div>
-
-  <script>
-    var slideIndex = 0;
-    carousel();
-
-    function carousel() {
-      var i;
-      var slides = document.getElementsByClassName("slideshow")[0].getElementsByTagName("img");
-      for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-      }
-      slideIndex++;
-      if (slideIndex > slides.length) {
-        slideIndex = 1;
-      }
-      slides[slideIndex - 1].style.display = "block";
-      setTimeout(carousel, 5000); // Cambia la imagen cada 5 segundos (5000 milisegundos)
-    }
-  </script>
+    <div class="container">
+        <div id="device-info">
+            <h1>Información del Dispositivo</h1>
+            <p><strong>Modelo del Dispositivo:</strong> <span id="device-model"></span></p>
+            <p><strong>Señal WiFi:</strong> <span id="wifi-signal"></span>%</p>
+        </div>
+        <div id="clock">
+            <p id="peru-time"></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
