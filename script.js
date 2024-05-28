@@ -24,10 +24,12 @@ function updatePeruTime() {
     document.getElementById('peru-time').textContent = peruTime;
 }
 
-// Inicializar la información
+// Inicializar la información del dispositivo
 getDeviceInfo();
-getWifiSignal();
-updatePeruTime();
-setInterval(updatePeruTime, 1000); // Actualizar la hora cada segundo
 
-// Para obtener la señal WiFi real se necesitaría acceso a una API nativa o usar una aplicación de escritorio.
+// Actualizar la señal WiFi cada segundo
+setInterval(getWifiSignal, 1000);
+
+// Actualizar la hora de Perú cada segundo
+setInterval(updatePeruTime, 1000);
+updatePeruTime();  // Llamar inmediatamente para mostrar la hora sin esperar un segundo
