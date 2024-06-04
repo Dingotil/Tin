@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Información del Dispositivo</title>
-    <link rel="stylesheet" href="styles.css">
+  <link href="https://vjs.zencdn.net/8.10.0/video-js.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="clock">
-        <p id="peru-time"></p>
-    </div>
-    <div class="container">
-        <div id="device-info">
-            <h1>Información del Dispositivo</h1>
-            <p><strong>Modelo del Dispositivo:</strong> <span id="device-model"></span></p>
-            <p><strong>Señal WiFi:</strong> <span id="wifi-signal"></span>%</p>
-        </div>
-    </div>
-    <script src="script.js"></script>
+  <video id="my-video" class="video-js" controls preload="auto" width="640" height="264" poster="MY_VIDEO_POSTER.jpg" data-setup="{}">
+    <source src="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" type="application/x-mpegURL" />
+    <p class="vjs-no-js">Para ver este video, habilita JavaScript y considera actualizar tu navegador a uno que <a href="https://videojs.com/html5-video-support/" target="_blank">soporte el video en HTML5</a>.</p>
+  </video>
+  <script src="https://vjs.zencdn.net/8.10.0/video.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var player = videojs('my-video');
+    });
+  </script>
 </body>
-</html>
