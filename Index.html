@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart TV App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="background">
+        <img src="img/portada.jpg" alt="Fondo de pantalla">
+    </div>
+    <div class="app-grid">
+        <div class="app-item" id="youtube">
+            <img src="img/youtube.png" alt="YouTube">
+            <p>YouTube</p>
+        </div>
+        <div class="app-item" id="disney">
+            <img src="img/disney.png" alt="Disney">
+            <p>Disney</p>
+        </div>
+        <div class="app-item" id="vimeo">
+            <img src="img/vimeo.png" alt="Vimeo">
+            <p>Vimeo</p>
+        </div>
+        <!-- Agregar más aplicaciones aquí -->
+    </div>
+
+    <script>
+        // Funcionalidad para navegar con el control remoto
+        document.addEventListener("keydown", function(event) {
+            switch (event.key) {
+                case "ArrowUp":
+                    navigateUp();
+                    break;
+                case "ArrowDown":
+                    navigateDown();
+                    break;
+                case "ArrowLeft":
+                    navigateLeft();
+                    break;
+                case "ArrowRight":
+                    navigateRight();
+                    break;
+                case "Enter":
+                    openApp();
+                    break;
+            }
+        });
+
+        let currentItem = 1;
+
+        function navigateUp() {
+            if (currentItem > 1) {
+                currentItem--;
+                focusItem(currentItem);
+            }
+        }
+
+        function navigateDown() {
+            if (currentItem < 3) {
+                currentItem++;
+                focusItem(currentItem);
+            }
+        }
+
+        function navigateLeft() {
+            if (currentItem > 1) {
+                currentItem--;
+                focusItem(currentItem);
+            }
+        }
+
+        function navigateRight() {
+            if (currentItem < 3) {
+                currentItem++;
+                focusItem(currentItem);
+            }
+        }
+
+        function focusItem(itemNumber) {
+            let item = document.getElementById(`app-item-${itemNumber}`);
+            item.focus();
+        }
+
+        function openApp() {
+            let selectedItem = document.querySelector(".app-item:focus");
+            let appId = selectedItem.id;
+            let url = "";
+
+            switch (appId) {
+                case "youtube":
+                    url = "https://www.youtube.com";
+                    break;
+                case "disney":
+                    url = "https://www.disney.com";
+                    break;
+                case "vimeo":
+                    url = "https://www.vimeo.com";
+                    break;
+                // Agregar más aplicaciones aquí
+            }
+
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+</html>
