@@ -1,14 +1,7 @@
-* {
-    box-sizing: border-box;
+body {
     margin: 0;
     padding: 0;
-}
-
-body {
-    width: 100%;
-    height: 100vh;
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
 }
 
 .background {
@@ -17,18 +10,22 @@ body {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-size: cover;
-    background-position: center;
     z-index: -1;
 }
 
+.background-image {
+    object-fit: cover;
+    width: 100%;
+    height: 100vh;
+}
+
 .container {
-    width: 80%;
-    height: 50vh;
-    margin: 20px auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .header {
@@ -41,27 +38,58 @@ body {
 }
 
 .datetime {
-    font-size: 16px;
-    color: #fff;
+    font-size: 18px;
     margin-right: 20px;
 }
 
 .menu-svg {
-    margin-left: 20px;
+    position: relative;
+}
+
+.menu-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
     cursor: pointer;
 }
 
-.menu-svg svg {
-    fill: #fff;
+.menu-options {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    display: none;
 }
 
-.menu {
+.menu-options span {
+    display: block;
+    padding: 10px;
+    border-bottom: 1px solid #444;
+}
+
+.menu-options span:hover {
+    background-color: #444;
+    color: #fff;
+}
+
+.card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10px;
-    padding: 20px;
+    grid-gap: 20px;
 }
 
-.item {
+.card {
     background-color: #fff;
-    padding
+    padding: 20px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 
