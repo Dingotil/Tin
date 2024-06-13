@@ -8,101 +8,48 @@
 </head>
 <body>
     <div class="background">
-        <img src="portada.jpg" alt="Fondo de pantalla">
+        <img src="img/portada.jpg" alt="Fondo de pantalla" style="object-fit: cover; width: 100%; height: 100vh;">
     </div>
-    <div class="app-grid">
-        <div class="app-item" id="youtube">
-            <img src="img/youtube.png" alt="YouTube">
-            <p>YouTube</p>
+    <div class="container">
+        <div class="header">
+            <div class="datetime">
+                <span id="fecha"></span>
+                <span id="hora"></span>
+            </div>
+            <div class="menu-svg">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="3" y="3" width="6" height="6" rx="1" fill="#fff"></rect>
+                    <rect x="9" y="3" width="6" height="6" rx="1" fill="#fff"></rect>
+                    <rect x="15" y="3" width="6" height="6" rx="1" fill="#fff"></rect>
+                </svg>
+                <div class="menu-options">
+                    <span>Option 1</span>
+                    <span>Option 2</span>
+                    <span>Option 3</span>
+                </div>
+            </div>
         </div>
-        <div class="app-item" id="disney">
-            <img src="img/disney.png" alt="Disney">
-            <p>Disney</p>
+        <div class="menu">
+            <div class="item" data-url="https://www.netflix.com">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Netflix_logo.svg" alt="Netflix">
+            </div>
+            <div class="item" data-url="https://www.disneyplus.com">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Disney%2B_logo.svg" alt="Disney+">
+            </div>
+            <div class="item" data-url="https://www.apple.com/apple-tv-plus/">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Apple_TV_Plus_Logo.svg" alt="Apple TV+">
+            </div>
+            <div class="item" data-url="https://www.hulu.com">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Hulu_Logo.svg" alt="Hulu">
+            </div>
+            <div class="item" data-url="http://app.ss-iptv.com/">
+                <img src="http://upload.wikimedia.org/wikipedia/commons/b/b9/SS_IPTV_logo.png" alt="Roku Channel">
+            </div>
+            <div class="item" data-url="https://www.paramountplus.com">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Paramount%2B_logo.svg" alt="Paramount+">
+            </div>
         </div>
-        <div class="app-item" id="vimeo">
-            <img src="img/vimeo.png" alt="Vimeo">
-            <p>Vimeo</p>
-        </div>
-        <!-- Agregar más aplicaciones aquí -->
     </div>
-
-    <script>
-        // Funcionalidad para navegar con el control remoto
-        document.addEventListener("keydown", function(event) {
-            switch (event.key) {
-                case "ArrowUp":
-                    navigateUp();
-                    break;
-                case "ArrowDown":
-                    navigateDown();
-                    break;
-                case "ArrowLeft":
-                    navigateLeft();
-                    break;
-                case "ArrowRight":
-                    navigateRight();
-                    break;
-                case "Enter":
-                    openApp();
-                    break;
-            }
-        });
-
-        let currentItem = 1;
-
-        function navigateUp() {
-            if (currentItem > 1) {
-                currentItem--;
-                focusItem(currentItem);
-            }
-        }
-
-        function navigateDown() {
-            if (currentItem < 3) {
-                currentItem++;
-                focusItem(currentItem);
-            }
-        }
-
-        function navigateLeft() {
-            if (currentItem > 1) {
-                currentItem--;
-                focusItem(currentItem);
-            }
-        }
-
-        function navigateRight() {
-            if (currentItem < 3) {
-                currentItem++;
-                focusItem(currentItem);
-            }
-        }
-
-        function focusItem(itemNumber) {
-            let item = document.getElementById(`app-item-${itemNumber}`);
-            item.focus();
-        }
-
-        function openApp() {
-            let selectedItem = document.querySelector(".app-item:focus");
-            let appId = selectedItem.id;
-            let url = "";
-
-            switch (appId) {
-                case "youtube":
-                    url = "https://www.youtube.com";
-                    break;
-                case "disney":
-                    url = "https://www.disney.com";
-                    break;
-                case "vimeo":
-                    url = "https://www.vimeo.com";
-                    break;
-                // Agregar más aplicaciones aquí
-            }
-
-            window.open(url, "_blank");
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
