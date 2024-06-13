@@ -71,3 +71,30 @@ items.forEach((item) => {
     window.location.href = url;
   });
 });
+
+// Agregar evento de click en el menú desplegable
+menuOptions.addEventListener('click', (event) => {
+  if (event.target.tagName === 'SPAN') {
+    const optionIndex = Array.prototype.indexOf.call(menuOptions.children, event.target);
+    switch (optionIndex) {
+      case 0:
+        // Opción 1
+        break;
+      case 1:
+        // Opción 2
+        break;
+      case 2:
+        // Opción 3
+        break;
+    }
+  }
+});
+
+// Agregar función para mostrar la fecha y hora actual
+setInterval(() => {
+  const fecha = new Date();
+  const hora = fecha.toLocaleTimeString('es-PE');
+  const fechaTexto = fecha.toLocaleDateString('es-PE');
+  document.getElementById('fecha').textContent = fechaTexto;
+  document.getElementById('hora').textContent = hora;
+}, 1000);
