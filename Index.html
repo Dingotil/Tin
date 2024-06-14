@@ -7,24 +7,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   <!-- Agregamos un contenedor para la animación de carga -->
-<div class="loading-container">
-  <!-- Agregamos un elemento para la animación de carga -->
-  <div class="loading-animation">
-    <!-- Puedes agregar aquí cualquier tipo de animación que desees, como un spinner o un texto que diga "Cargando..." -->
-    <img src="spinner.gif" alt="Cargando...">
-  </div>
-  <!-- Agregamos un fondo oscuro para la animación -->
-  <div class="loading-background"></div>
-</div>
+    <!-- Contenedor para la animación de carga -->
+    <div class="loading-container">
+        <!-- Animación de carga -->
+        <div class="loading-animation">
+            <img src="spinner.gif" alt="Cargando...">
+        </div>
+        <!-- Fondo oscuro para la animación -->
+        <div class="loading-background"></div>
+    </div>
 
-<!-- Resto del contenido de la página -->
-<div class="container">
-  <!-- Tu contenido aquí -->
-</div>
+    <!-- Contenedor principal -->
     <div class="background-overlay">
         <h1>Roku TV</h1>
         <div class="container">
+            <!-- Elementos de la grilla -->
             <div class="item" onclick="navigateTo('https://www.netflix.com')">
                 <img src="img/Netflix.png" alt="Netflix">
                 <p>Netflix</p>
@@ -51,6 +48,7 @@
             </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
