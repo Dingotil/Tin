@@ -8,12 +8,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('img/portada.jpg') no-repeat center center fixed;
+    background: url('images/background.jpg') no-repeat center center fixed;
     background-size: cover;
 }
 
 .background-overlay {
-    background: rgba(0, 0, 0, 0.2); /* Oscurecer ligeramente la imagen de fondo */
+    background: rgba(0, 0, 0, 0.5); /* Oscurecer ligeramente la imagen de fondo */
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -31,10 +31,11 @@ h1 {
 }
 
 .container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
-    width: 80%;
+    width: 100%;
     max-width: 1200px;
 }
 
@@ -48,15 +49,33 @@ h1 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 150px;
+    width: calc(33.33% - 40px); /* Tres columnas con espacio entre ellas */
+    max-width: 300px;
+    box-sizing: border-box;
 }
 
 .item img {
-    max-width: 80px;
+    max-width: 100px;
     margin-bottom: 10px;
+    width: 100%;
+    height: auto;
 }
 
 .item p {
     margin: 0;
     color: white;
+    font-size: 1.2em; /* Ajuste de tamaño de fuente */
+}
+
+/* Estilos responsivos */
+@media (max-width: 800px) {
+    .item {
+        width: calc(50% - 40px); /* Dos columnas en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 500px) {
+    .item {
+        width: calc(100% - 40px); /* Una columna en pantallas muy pequeñas */
+    }
 }
