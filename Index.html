@@ -3,52 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart TV App</title>
+    <title>Roku TV App</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="background">
-        <img src="img/portada.jpg" alt="Fondo de pantalla" class="background-image">
-    </div>
+    <h1>Roku TV</h1>
     <div class="container">
-        <div class="header">
-            <div class="datetime">
-                <span id="fecha"></span>
-                <span id="hora"></span>
-            </div>
-            <div class="menu-svg">
-                <img src="img/slider.svg" alt="Menú" class="menu-icon">
-                <div class="menu-options">
-                    <span>Opción 1</span>
-                    <span>Opción 2</span>
-                </div>
-            </div>
+        <div class="item" onclick="navigateTo('https://www.netflix.com')">
+            <img src="img/Netflix.png" alt="Netflix">
+            <p>Netflix</p>
         </div>
-        <div class="card-grid">
-            <div class="card" data-url="https://www.netflix.com">
-                <img src="img/Netflix.png" alt="Netflix">
-                <h2>Netflix</h2>
-            </div>
-            <div class="card" data-url="https://www.disneyplus.com">
-                <img src="img/disney.jpg" alt="Disney+">
-                <h2>Disney+</h2>
-            </div>
-            <div class="card" data-url="https://www.apple.com/apple-tv-plus/">
-                <img src="img/apple-tv.jpg" alt="Apple TV+">
-                <h2>Apple TV+</h2>
-            </div>
-            <div class="card" data-url="https://www.hulu.com">
-                <img src="img/hulu.jpg" alt="Hulu">
-                <h2>Hulu</h2>
-            </div>
-            <div class="card" data-url="http://app.ss-iptv.com/">
-                <img src="img/ssiptv.png" alt="ss-iptv">
-                <h2>Roku Channel</h2>
-            </div>
-            <div class="card" data-url="https://www.paramountplus.com">
-                <img src="img/paramount.jpg" alt="Paramount+">
-                <h2>Paramount+</h2>
-            </div>
+        <div class="item" onclick="navigateTo('https://www.disneyplus.com')">
+            <img src="images/disneyplus.png" alt="Disney+">
+            <p>Disney+</p>
+        </div>
+        <div class="item" onclick="navigateTo('https://www.apple.com/tv/')">
+            <img src="images/appletv.png" alt="Apple TV">
+            <p>Apple TV</p>
+        </div>
+        <div class="item" onclick="navigateTo('https://www.hulu.com')">
+            <img src="images/hulu.png" alt="Hulu">
+            <p>Hulu</p>
+        </div>
+        <div class="item" onclick="navigateTo('https://www.roku.com/channel')">
+            <img src="images/roku.png" alt="Roku Channel">
+            <p>Roku Channel</p>
+        </div>
+        <div class="item" onclick="navigateTo('https://www.paramountplus.com')">
+            <img src="images/paramount.png" alt="Paramount+">
+            <p>Paramount+</p>
         </div>
     </div>
     <script src="script.js"></script>
