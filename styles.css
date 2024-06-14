@@ -11,39 +11,38 @@ body {
     background: url('img/portada.jpg') no-repeat center center fixed;
     background-size: cover;
 }
-/* Estilos para la animación de carga */
+
 .loading-container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #333; /* Fondo oscuro para la animación */
-  z-index: 1000; /* Aseguramos que la animación esté encima de todo el contenido */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #333; /* Fondo oscuro para la animación */
+    z-index: 1000; /* Aseguramos que la animación esté encima de todo el contenido */
 }
 
 .loading-animation {
-  width: 50px;
-  height: 50px;
-  margin: 20px;
+    width: 50px;
+    height: 50px;
+    margin: 20px;
 }
 
 .loading-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: #333; /* Fondo oscuro para la animación */
-  opacity: 0.5; /* Transparencia para que no cubra todo el contenido */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #333; /* Fondo oscuro para la animación */
+    opacity: 0.5; /* Transparencia para que no cubra todo el contenido */
 }
 
-/* Estilos para ocultar la animación de carga cuando la página esté cargada */
 .loaded {
-  display: none;
+    display: none;
 }
 
 .background-overlay {
@@ -80,36 +79,3 @@ h1 {
     border-radius: 10px;
     cursor: pointer;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: calc(33.33% - 40px); /* Tres columnas con espacio entre ellas */
-    max-width: 300px;
-    box-sizing: border-box;
-}
-
-.item img {
-    max-width: 100px;
-    margin-bottom: 10px;
-    width: 100%;
-    height: auto;
-}
-
-.item p {
-    margin: 0;
-    color: white;
-    font-size: 1.2em; /* Ajuste de tamaño de fuente */
-}
-
-/* Estilos responsivos */
-@media (max-width: 800px) {
-    .item {
-        width: calc(50% - 40px); /* Dos columnas en pantallas más pequeñas */
-    }
-}
-
-@media (max-width: 500px) {
-    .item {
-        width: calc(100% - 40px); /* Una columna en pantallas muy pequeñas */
-    }
-}
