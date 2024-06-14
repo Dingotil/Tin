@@ -3,19 +3,21 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     overflow: hidden;
-    background-image: url('img/portada.jpg'); /* Imagen de fondo */
-    background-size: cover;
-    background-position: center;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: url('img/portada.jpg') no-repeat center center fixed;
+    background-size: cover;
 }
 
 .background-overlay {
     background: rgba(0, 0, 0, 0.5); /* Oscurecer ligeramente la imagen de fondo */
     padding: 20px;
     border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
