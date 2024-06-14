@@ -11,80 +11,39 @@ body {
     background: url('img/portada.jpg') no-repeat center center fixed;
     background-size: cover;
 }
-/* Estilos para el contenedor de la animación de carga */
-.loader-container {
+/* Estilos para la animación de carga */
+.loading-container {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #f9f9f9;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  background-color: #333; /* Fondo oscuro para la animación */
+  z-index: 1000; /* Aseguramos que la animación esté encima de todo el contenido */
 }
 
-/* Estilos para la animación de carga */
-.loader {
+.loading-animation {
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  border-top: 2px solid #333;
-  animation: spin 1s linear infinite;
+  margin: 20px;
 }
 
-.loader-inner {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 2px solid #ccc;
-  border-top: 2px solid #333;
-  animation: spin 1s linear infinite;
-}
-
-.loader-circle {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #333;
+.loading-background {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  animation: pulse 1s linear infinite;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: #333; /* Fondo oscuro para la animación */
+  opacity: 0.5; /* Transparencia para que no cubra todo el contenido */
 }
 
-/* Animación de carga */
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-/* Ocultar la animación de carga cuando la página esté cargada */
-.content {
-  display: none;
-}
-
+/* Estilos para ocultar la animación de carga cuando la página esté cargada */
 .loaded {
-  display: block;
+  display: none;
 }
 
 .background-overlay {
