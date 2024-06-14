@@ -13,7 +13,7 @@ body {
 }
 
 .background-overlay {
-    background: rgba(0, 0, 0, 0.1); /* Oscurecer ligeramente la imagen de fondo */
+    background: rgba(0, 0, 0, 0.5); /* Oscurecer ligeramente la imagen de fondo */
     padding: 20px;
     border-radius: 20px;
     display: flex;
@@ -33,7 +33,7 @@ h1 {
 .container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 20px;
+    gap: 20px;
     width: 80%;
     max-width: 1200px;
 }
